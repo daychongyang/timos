@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>requestAnimationFrame</title>
+    <style>
+      #block {
+        width: 100px;
+        height: 100px;
+        background: rebeccapurple;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="block"></div>
+    <!-- <script>
+        const block = document.getElementById('block')
+        let start;
+
+        function step(timestamp){
+            if(start === undefined){
+                start = timestamp;
+            }
+
+            const elapsed = timestamp - start;
+
+            block.style.transform = `translateX(${Math.min(0.1*elapsed, 200)}px)`
+
+            if(elapsed < 2000){
+                window.requestAnimationFrame(step)
+            }
+        }
+
+        window.requestAnimationFrame(step)
+
+    </script> -->
+    <script>
+      const start = Date.now();
+      const block = document.getElementById("block");
+
+      const timer = setInterval(() => {
+        const elapsed = Date.now() - start;
+
+        block.style.transform = `translateX(${Math.min(0.1 * elapsed, 200)}px)`;
+
+        if (elapsed >= 2000) {
+          clearInterval(timer);
+        }
+      }, 16);
+    </script>
+  </body>
+</html>
